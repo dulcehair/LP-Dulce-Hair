@@ -19,14 +19,14 @@
     progressiva: {
       eyebrow: 'Progressiva sem formol · São Paulo',
       titulo: 'Liso sem cheiro,<br><span class="gold">sem formol.</span>',
-      lead: 'Alisamento com ativos registrados na Anvisa e teste de mecha antes de qualquer aplicação. Você escolhe o resultado — do liso total ao só-tirar-o-volume — e leva um cabelo que continua saudável no fim.',
+      lead: 'Alisamento com ativos registrados na Anvisa e teste de mecha antes de qualquer aplicação. Você escolhe o resultado, do liso total ao só-tirar-o-volume, e leva um cabelo que continua saudável no fim.',
       cta: 'Quero minha progressiva',
       mensagem: 'Olá! Vim pelo site da Dulce Hair e quero saber sobre a progressiva sem formol.'
     },
     corte: {
       eyebrow: 'Corte assinatura · São Paulo',
       titulo: 'O corte certo<br><span class="gold">muda tudo.</span>',
-      lead: 'Na Dulce Hair, o corte é desenhado para o seu rosto, o seu tipo de fio e a sua rotina — não para a foto que viralizou. Você sai daqui com um cabelo que continua bonito na segunda-feira de manhã.',
+      lead: 'Na Dulce Hair, o corte é desenhado para o seu rosto, o seu tipo de fio e a sua rotina, não para a foto que viralizou. Você sai daqui com um cabelo que continua bonito na segunda-feira de manhã.',
       cta: 'Quero agendar meu corte',
       mensagem: 'Olá! Vim pelo site da Dulce Hair e gostaria de agendar um corte.'
     }
