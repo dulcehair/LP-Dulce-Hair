@@ -25,7 +25,7 @@ ao ar como está.
 | 3 | **Horário de atendimento** | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
 | 4 | **Depoimentos** — hoje são caixas vazias marcadas | `index.html` → seção `#depoimentos` |
 | 5 | **Números da faixa de credibilidade** (12 anos, nota 5,0, 5.000+ atendimentos) | `index.html` → seção `.credbar` e selos do hero |
-| 5b | **Dados da progressiva**: linha/marca do produto, registro na Anvisa e duração média real | `index.html` → seção `#progressiva` e FAQ |
+| 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
 | 6 | **Fotos reais** do salão, da equipe e dos trabalhos | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
 | 8 | **IDs de pixel** (Meta / GA4 / Google Ads) | `index.html` → bloco `window.DULCE` |
