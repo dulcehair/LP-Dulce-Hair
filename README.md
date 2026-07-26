@@ -20,19 +20,23 @@ ao ar como está.
 
 | # | O quê | Onde |
 |---|---|---|
-| 1 | **Número do WhatsApp** (`5511999999999`) | `index.html` → bloco `window.DULCE`, no `<head>` |
-| 2 | **Endereço completo e CEP** | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
-| 3 | **Horário de atendimento** | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
+| ~~1~~ | ~~**Número do WhatsApp**~~ — preenchido: `5511985969542` | `index.html` → bloco `window.DULCE`, no `<head>` |
+| ~~2~~ | ~~**Endereço completo e CEP**~~ — preenchido: Estr. do M'Boi Mirim, 2207 — Jardim das Flores, São Paulo/SP, 04905-022 | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
+| ~~3~~ | ~~**Horário de atendimento**~~ — preenchido: terça a sábado, 09h às 18h | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
 | 4 | **Depoimentos** — hoje são caixas vazias marcadas | `index.html` → seção `#depoimentos` |
 | 5 | **Números da faixa de credibilidade** (12 anos, nota 5,0, 5.000+ atendimentos) | `index.html` → seção `.credbar` e selos do hero |
 | 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
 | 6 | **Fotos reais** do salão, da equipe e dos trabalhos | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
 | 8 | **IDs de pixel** (Meta / GA4 / Google Ads) | `index.html` → bloco `window.DULCE` |
-| 9 | **Endereço do mapa** (parâmetro `q=` do iframe e do link) | `index.html` → seção `#localizacao` |
+| ~~9~~ | ~~**Endereço do mapa**~~ — preenchido | `index.html` → seção `#localizacao` |
 
-Todos esses pontos estão marcados no código com o comentário `⚠️ TROCAR`.
-Buscar por `TROCAR` no `index.html` encontra tudo.
+Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`.
+Buscar por `⚠️` no `index.html` encontra todos.
+
+**Faltam:** depoimentos reais (4), conferir os números da faixa de
+credibilidade (5), confirmar o produto da progressiva (5b), fotos reais (6),
+domínio (7) e IDs de pixel (8).
 
 > **Sobre a alegação "sem formol".** A página afirma que o alisamento é feito com
 > ativos sem formol e com registro na Anvisa. Isso precisa corresponder exatamente

@@ -36,8 +36,8 @@
      ========================================================================== -->
 <script>
   window.DULCE = {
-    // Número do WhatsApp com DDI + DDD, só dígitos.  <<< TROCAR
-    whatsapp: '5511999999999',
+    // Número do WhatsApp com DDI + DDD, só dígitos.
+    whatsapp: '5511985969542',
     // Mensagem que já vem digitada quando a cliente abre a conversa.
     // Cada oferta (?oferta=progressiva | ?oferta=corte) troca esta mensagem —
     // ver a lista OFERTAS no início de assets/js/main.js.
@@ -559,7 +559,7 @@
         Ver horários disponíveis
       </a>
     </div>
-    <span class="btn-note reveal" data-delay="3">Atendimento por WhatsApp · Seg a Sáb</span>
+    <span class="btn-note reveal" data-delay="3">Atendimento por WhatsApp · Terça a sábado, 09h às 18h</span>
   </div>
 </section>
 
@@ -577,16 +577,14 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
           <div>
             <span class="info-k">Endereço</span>
-            <!-- ⚠️ TROCAR pelo endereço completo do salão -->
-            <p class="info-v">Rua Exemplo, 000 — Bairro<br>São Paulo/SP · CEP 00000-000</p>
+            <p class="info-v">Estr. do M'Boi Mirim, 2207 — Jardim das Flores<br>São Paulo/SP · CEP 04905-022</p>
           </div>
         </li>
         <li>
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg>
           <div>
             <span class="info-k">Horário de atendimento</span>
-            <!-- ⚠️ TROCAR pelo horário real -->
-            <p class="info-v">Terça a sexta · 09h às 19h<br>Sábado · 09h às 18h</p>
+            <p class="info-v">Terça a sábado · 09h às 18h</p>
           </div>
         </li>
         <li>
@@ -612,15 +610,14 @@
 
     <div class="map-frame reveal" data-delay="1">
       <!-- Aparece enquanto o mapa carrega (e caso o embed seja bloqueado) -->
-      <p class="map-frame__fallback">Rua Exemplo, 000 — Bairro<br>São Paulo/SP</p>
-      <!-- ⚠️ TROCAR o parâmetro q= pelo endereço exato do salão -->
+      <p class="map-frame__fallback">Estr. do M'Boi Mirim, 2207 — Jardim das Flores<br>São Paulo/SP</p>
       <iframe
         title="Mapa — localização da Dulce Hair"
-        src="https://www.google.com/maps?q=Dulce+Hair+S%C3%A3o+Paulo&output=embed"
+        src="https://www.google.com/maps?q=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022&output=embed"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
         allowfullscreen></iframe>
-      <a class="map-frame__link" href="https://www.google.com/maps/search/?api=1&query=Dulce+Hair+S%C3%A3o+Paulo" target="_blank" rel="noopener">
+      <a class="map-frame__link" href="https://www.google.com/maps/search/?api=1&query=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022" target="_blank" rel="noopener">
         Abrir no Google Maps
       </a>
     </div>
@@ -746,10 +743,9 @@
       <div>
         <p class="footer-title">Contato</p>
         <ul class="footer-list">
-          <!-- ⚠️ TROCAR pelos dados reais -->
-          <li>Rua Exemplo, 000 — Bairro<br>São Paulo/SP</li>
-          <li>Terça a sexta · 09h às 19h</li>
-          <li>Sábado · 09h às 18h</li>
+          <li>Estr. do M'Boi Mirim, 2207<br>Jardim das Flores — São Paulo/SP</li>
+          <li>Terça a sábado · 09h às 18h</li>
+          <li><a href="tel:+5511985969542">(11) 98596-9542</a></li>
           <li><a data-wa data-cta="rodape-link">Agendar pelo WhatsApp</a></li>
         </ul>
       </div>
@@ -790,19 +786,18 @@
   "description": "Salão de beleza em São Paulo especializado em progressiva sem formol e corte feminino, com teste de mecha antes de qualquer química.",
   "image": "https://www.dulcehair.com.br/assets/img/og-image.jpg",
   "url": "https://www.dulcehair.com.br/",
-  "telephone": "+5511999999999",
+  "telephone": "+5511985969542",
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Rua Exemplo, 000",
+    "streetAddress": "Estrada do M'Boi Mirim, 2207",
     "addressLocality": "São Paulo",
     "addressRegion": "SP",
-    "postalCode": "00000-000",
+    "postalCode": "04905-022",
     "addressCountry": "BR"
   },
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday"], "opens": "09:00", "closes": "19:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "18:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "09:00", "closes": "18:00" }
   ],
   "sameAs": ["https://www.instagram.com/_dulcehair"],
   "makesOffer": [
