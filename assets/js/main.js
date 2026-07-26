@@ -9,6 +9,55 @@
   var doc = document;
 
   /* ------------------------------------------------------------------------
+     0. Ofertas — message match entre o anúncio e o topo da página
+     ------------------------------------------------------------------------
+     A campanha manda o tráfego com ?oferta=progressiva ou ?oferta=corte e o
+     hero se ajusta ao que o anúncio prometeu. Sem o parâmetro, fica o texto
+     padrão que está no HTML (que cobre as duas ofertas).
+     ------------------------------------------------------------------------ */
+  var OFERTAS = {
+    progressiva: {
+      eyebrow: 'Progressiva sem formol · São Paulo',
+      titulo: 'Liso sem cheiro,<br><span class="gold">sem formol.</span>',
+      lead: 'Alisamento com ativos registrados na Anvisa e teste de mecha antes de qualquer aplicação. Você escolhe o resultado — do liso total ao só-tirar-o-volume — e leva um cabelo que continua saudável no fim.',
+      cta: 'Quero minha progressiva',
+      mensagem: 'Olá! Vim pelo site da Dulce Hair e quero saber sobre a progressiva sem formol.'
+    },
+    corte: {
+      eyebrow: 'Corte assinatura · São Paulo',
+      titulo: 'O corte certo<br><span class="gold">muda tudo.</span>',
+      lead: 'Na Dulce Hair, o corte é desenhado para o seu rosto, o seu tipo de fio e a sua rotina — não para a foto que viralizou. Você sai daqui com um cabelo que continua bonito na segunda-feira de manhã.',
+      cta: 'Quero agendar meu corte',
+      mensagem: 'Olá! Vim pelo site da Dulce Hair e gostaria de agendar um corte.'
+    }
+  };
+
+  var ofertaAtiva = null;
+
+  function aplicaOferta(q) {
+    var chave = String(q.oferta || '').toLowerCase();
+    var o = OFERTAS[chave];
+    if (!o) return;
+
+    ofertaAtiva = chave;
+
+    var alvos = {
+      heroEyebrow: o.eyebrow,
+      heroTitulo: o.titulo,
+      heroLead: o.lead,
+      heroCtaTexto: o.cta
+    };
+    Object.keys(alvos).forEach(function (id) {
+      var el = doc.getElementById(id);
+      if (el) el.innerHTML = alvos[id];
+    });
+
+    // o botão do hero passa a identificar a campanha no rastreamento
+    var cta = doc.getElementById('heroCta');
+    if (cta) cta.setAttribute('data-cta', 'hero-' + chave);
+  }
+
+  /* ------------------------------------------------------------------------
      1. Rastreamento — carrega só os pixels que tiverem ID preenchido
      ------------------------------------------------------------------------ */
   function loadScript(src, onload) {
@@ -92,11 +141,18 @@
     if (q.gclid) rastro.push('gclid: ' + q.gclid);
     if (q.fbclid) rastro.push('fbclid: ' + q.fbclid);
 
-    var base = CFG.mensagem || 'Olá! Gostaria de agendar um horário.';
+    // a mensagem padrão cede lugar à da oferta que trouxe a visita
+    var base = (ofertaAtiva && OFERTAS[ofertaAtiva].mensagem) ||
+      CFG.mensagem || 'Olá! Gostaria de agendar um horário.';
 
     Array.prototype.forEach.call(doc.querySelectorAll('[data-wa]'), function (el) {
       var origem = el.getAttribute('data-cta') || 'site';
-      var texto = base + (rastro.length ? '\n\n(origem: ' + origem + ' · ' + rastro.join(' · ') + ')' : '');
+
+      // Botão dentro de uma oferta específica já abre a conversa no assunto
+      // certo, mesmo que a visita não tenha vindo pelo link da campanha.
+      var doBotao = OFERTAS[origem.replace('hero-', '')];
+      var texto = (doBotao ? doBotao.mensagem : base) +
+        (rastro.length ? '\n\n(origem: ' + origem + ' · ' + rastro.join(' · ') + ')' : '');
       el.setAttribute('href', 'https://wa.me/' + numero + '?text=' + encodeURIComponent(texto));
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener');
@@ -265,6 +321,7 @@
     if (ano) ano.textContent = new Date().getFullYear();
 
     initTracking();
+    aplicaOferta(paramsDaUrl());
     montaLinks();
     initScrollUI();
     initReveal();

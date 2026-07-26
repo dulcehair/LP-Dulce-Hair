@@ -146,7 +146,8 @@ def grain(img, amount=7, seed=3):
     return Image.blend(img, Image.merge("RGB", (noise, noise, noise)), 0.09)
 
 
-def compose(w, h, *, seed, count, glow, direction="down", scale=260, bright=1.0, blur_bloom=26):
+def compose(w, h, *, seed, count, glow, direction="down", scale=260, bright=1.0,
+            spread=1.0, blur_bloom=26):
     base = Image.new("RGB", (w, h), INK)
 
     # luz de fundo
@@ -158,19 +159,19 @@ def compose(w, h, *, seed, count, glow, direction="down", scale=260, bright=1.0,
 
     # camada de fundo desfocada (profundidade)
     back = strands(w, h, int(count * 0.45), seed=seed + 91, scale=scale * 1.5,
-                   direction=direction, bright=bright * 0.6, spread=1.25, thickness=(2, 5))
+                   direction=direction, bright=bright * 0.6, spread=1.25 * spread, thickness=(2, 5))
     base.alpha_composite(back.filter(ImageFilter.GaussianBlur(w / 90)))
 
     # camada nitida
     front = strands(w, h, count, seed=seed, scale=scale, direction=direction,
-                    bright=bright, spread=1.0, thickness=(1, 3))
+                    bright=bright, spread=spread, thickness=(1, 3))
     bloom = front.filter(ImageFilter.GaussianBlur(blur_bloom))
     base.alpha_composite(bloom)
     base.alpha_composite(front)
 
     # detalhe fino por cima
     fine = strands(w, h, int(count * 0.3), seed=seed + 404, scale=scale * 0.8,
-                   direction=direction, bright=bright * 1.25, spread=0.85, thickness=(1, 1))
+                   direction=direction, bright=bright * 1.25, spread=0.85 * spread, thickness=(1, 1))
     base.alpha_composite(fine)
 
     out = base.convert("RGB")
@@ -186,6 +187,14 @@ JOBS = [
     # servicos — quadrados
     dict(name="servico-corte", size=(1100, 1100), seed=23, count=620, direction="down", scale=210,
          bright=0.92, glow=[(0.62, 0.35, 0.66, (132, 92, 52), 0.55)]),
+    # progressiva — fios praticamente retos (spread baixo), brilho alto
+    dict(name="servico-progressiva", size=(1100, 1100), seed=131, count=900, direction="down",
+         scale=520, bright=1.22, spread=0.1,
+         glow=[(0.5, 0.34, 0.7, (162, 118, 68), 0.6)]),
+    dict(name="progressiva", size=(1280, 1600), seed=149, count=1150, direction="down",
+         scale=560, bright=1.28, spread=0.08,
+         glow=[(0.58, 0.28, 0.66, (170, 126, 74), 0.62),
+               (0.34, 0.74, 0.5, (72, 50, 32), 0.4)]),
     dict(name="servico-cor", size=(1100, 1100), seed=37, count=680, direction="down", scale=245,
          bright=1.18, glow=[(0.4, 0.42, 0.72, (168, 124, 72), 0.6)]),
     dict(name="servico-tratamento", size=(1100, 1100), seed=59, count=760, direction="right",
@@ -211,7 +220,8 @@ def main():
         w, h = job["size"]
         print(f"  gerando {job['name']} ({w}x{h})…")
         img = compose(w, h, seed=job["seed"], count=job["count"], glow=job["glow"],
-                      direction=job["direction"], scale=job["scale"], bright=job["bright"])
+                      direction=job["direction"], scale=job["scale"], bright=job["bright"],
+                      spread=job.get("spread", 1.0))
         img.save(os.path.join(OUT, f"{job['name']}.jpg"), quality=86, optimize=True, progressive=True)
         img.save(os.path.join(OUT, f"{job['name']}.webp"), quality=82, method=6)
 

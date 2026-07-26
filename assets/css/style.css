@@ -338,7 +338,9 @@ body::before {
   font-weight: 500;
   letter-spacing: 0.13em;
   text-transform: uppercase;
+  text-align: center;
   white-space: nowrap;
+  max-width: 100%;
   cursor: pointer;
   transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease),
     background-color 0.35s var(--ease), color 0.35s var(--ease),
@@ -393,6 +395,15 @@ body::before {
 
 .btn--block {
   width: 100%;
+}
+
+/* Em tela estreita, CTA longo quebra a linha em vez de estourar a página */
+@media (max-width: 460px) {
+  .btn {
+    white-space: normal;
+    padding-inline: 1.5rem;
+    line-height: 1.35;
+  }
 }
 
 .btn-note {
@@ -897,6 +908,19 @@ body::before {
   line-height: 1.7;
 }
 
+/* Cartões das duas ofertas em foco no tráfego pago */
+.service--destaque {
+  background: var(--ink-3);
+}
+
+.service--destaque::before {
+  transform: scaleX(1);
+}
+
+.service--destaque .service__icon {
+  color: var(--gold-lt);
+}
+
 .service__tag {
   display: inline-block;
   margin-top: 1.3rem;
@@ -908,6 +932,122 @@ body::before {
   border: 1px solid var(--line-gold);
   border-radius: 100px;
   padding: 0.36rem 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   11b. Comparativo com formol × sem formol
+   -------------------------------------------------------------------------- */
+.versus {
+  display: grid;
+  gap: 1px;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+@media (min-width: 820px) {
+  .versus {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.versus__col {
+  padding: 2.1rem 1.9rem 2.35rem;
+  background: var(--ink);
+}
+
+.versus__col--good {
+  background: var(--ink-3);
+  box-shadow: inset 0 2px 0 0 var(--gold);
+}
+
+.versus__title {
+  font-family: var(--f-display);
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+}
+
+.versus__col--good .versus__title {
+  color: var(--gold);
+}
+
+.versus__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.95rem;
+}
+
+.versus__list li {
+  position: relative;
+  padding-left: 2rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--cream-dim);
+}
+
+/* × para o lado ruim, ✓ para o nosso */
+.versus__list--bad li::before,
+.versus__list--good li::before {
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.25rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.versus__list--bad li::before {
+  content: '×';
+  color: var(--muted);
+}
+
+.versus__list--good li::before {
+  content: '✓';
+  color: var(--gold);
+}
+
+.versus__col--good .versus__list li {
+  color: var(--cream);
+}
+
+/* Pílulas "indicada para" */
+.pills-label {
+  margin: clamp(2.25rem, 4vw, 3rem) 0 1.1rem;
+  font-family: var(--f-display);
+  font-size: 0.7rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.pills li {
+  padding: 0.55rem 1.15rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 100px;
+  font-size: 0.85rem;
+  color: var(--cream-dim);
+  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+}
+
+.pills li:hover {
+  border-color: var(--line-gold);
+  color: var(--cream);
 }
 
 /* --------------------------------------------------------------------------
