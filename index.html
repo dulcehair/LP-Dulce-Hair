@@ -28,7 +28,8 @@
 <!-- Performance: fontes e imagem do hero antes de tudo -->
 <link rel="preload" href="assets/fonts/jost-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/img/hero.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="preload" href="assets/img/hero.webp" as="image" type="image/webp" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" href="assets/img/hero-mobile.webp" as="image" type="image/webp" media="(max-width: 900px)" fetchpriority="high">
 <link rel="stylesheet" href="assets/css/style.css">
 
 <!-- ==========================================================================
@@ -85,9 +86,13 @@
      ========================================================================== -->
 <section class="hero" id="topo">
   <div class="hero__bg">
+    <!-- No celular entra um enquadramento vertical da mesma foto: o corte
+         "cover" de uma imagem deitada numa tela em pé perderia o cabelo. -->
     <picture>
+      <source media="(max-width: 900px)" srcset="assets/img/hero-mobile.webp" type="image/webp">
+      <source media="(max-width: 900px)" srcset="assets/img/hero-mobile.jpg">
       <source srcset="assets/img/hero.webp" type="image/webp">
-      <img src="assets/img/hero.jpg" alt="" width="1400" height="1900" fetchpriority="high" decoding="async">
+      <img src="assets/img/hero.jpg" alt="" width="1448" height="1086" fetchpriority="high" decoding="async">
     </picture>
   </div>
 
@@ -176,7 +181,7 @@
       <div class="figure figure--framed figure--portrait reveal split__media--first">
         <picture>
           <source srcset="assets/img/progressiva.webp" type="image/webp">
-          <img src="assets/img/progressiva.jpg" alt="Fio alinhado e com brilho após progressiva sem formol" width="1280" height="1600" loading="lazy" decoding="async">
+          <img src="assets/img/progressiva.jpg" alt="Cabelo longo alinhado e com brilho após progressiva sem formol na Dulce Hair" width="869" height="1086" loading="lazy" decoding="async">
         </picture>
       </div>
 
@@ -250,8 +255,8 @@
   <div class="wrap split split--wide-right">
     <div class="figure figure--framed reveal split__media--first">
       <picture>
-        <source srcset="assets/img/servico-corte.webp" type="image/webp">
-        <img src="assets/img/servico-corte.jpg" alt="Detalhe de fios iluminados após o corte na Dulce Hair" width="1100" height="1100" loading="lazy" decoding="async">
+        <source srcset="assets/img/corte.webp" type="image/webp">
+        <img src="assets/img/corte.jpg" alt="Cliente da Dulce Hair sorrindo com corte bob loiro finalizado" width="692" height="865" loading="lazy" decoding="async">
       </picture>
     </div>
 
@@ -390,44 +395,28 @@
     </div>
 
     <div class="gallery">
-      <figure class="gallery__item gallery__item--tall reveal">
+      <figure class="gallery__item reveal">
         <picture>
-          <source srcset="assets/img/galeria-3.webp" type="image/webp">
-          <img src="assets/img/galeria-3.jpg" alt="Corte longo repicado com movimento" width="1000" height="1670" loading="lazy" decoding="async">
+          <source srcset="assets/img/galeria-bob.webp" type="image/webp">
+          <img src="assets/img/galeria-bob.jpg" alt="Corte bob loiro visto de perfil, com a linha do corte marcada" width="670" height="1117" loading="lazy" decoding="async">
         </picture>
-        <figcaption>Corte longo repicado</figcaption>
+        <figcaption>Bob</figcaption>
       </figure>
 
       <figure class="gallery__item reveal" data-delay="1">
         <picture>
-          <source srcset="assets/img/servico-progressiva.webp" type="image/webp">
-          <img src="assets/img/servico-progressiva.jpg" alt="Fio alinhado após progressiva sem formol" width="1100" height="1100" loading="lazy" decoding="async">
+          <source srcset="assets/img/galeria-chanel.webp" type="image/webp">
+          <img src="assets/img/galeria-chanel.jpg" alt="Chanel de bico loiro com mechas e camadas" width="788" height="1313" loading="lazy" decoding="async">
+        </picture>
+        <figcaption>Chanel de bico</figcaption>
+      </figure>
+
+      <figure class="gallery__item reveal" data-delay="2">
+        <picture>
+          <source srcset="assets/img/galeria-progressiva.webp" type="image/webp">
+          <img src="assets/img/galeria-progressiva.jpg" alt="Cabelo longo liso e brilhante após progressiva sem formol" width="1100" height="956" loading="lazy" decoding="async">
         </picture>
         <figcaption>Progressiva sem formol</figcaption>
-      </figure>
-
-      <figure class="gallery__item reveal" data-delay="2">
-        <picture>
-          <source srcset="assets/img/servico-cor.webp" type="image/webp">
-          <img src="assets/img/servico-cor.jpg" alt="Morena iluminada com mechas" width="1100" height="1100" loading="lazy" decoding="async">
-        </picture>
-        <figcaption>Morena iluminada</figcaption>
-      </figure>
-
-      <figure class="gallery__item reveal" data-delay="1">
-        <picture>
-          <source srcset="assets/img/galeria-2.webp" type="image/webp">
-          <img src="assets/img/galeria-2.jpg" alt="Cachos definidos com corte em camadas" width="1000" height="1340" loading="lazy" decoding="async">
-        </picture>
-        <figcaption>Cachos definidos</figcaption>
-      </figure>
-
-      <figure class="gallery__item reveal" data-delay="2">
-        <picture>
-          <source srcset="assets/img/galeria-1.webp" type="image/webp">
-          <img src="assets/img/galeria-1.jpg" alt="Bob curto com acabamento preciso" width="1000" height="1340" loading="lazy" decoding="async">
-        </picture>
-        <figcaption>Bob preciso</figcaption>
       </figure>
     </div>
 
@@ -474,8 +463,8 @@
 
     <div class="figure figure--framed figure--portrait reveal" data-delay="1">
       <picture>
-        <source srcset="assets/img/ambiente.webp" type="image/webp">
-        <img src="assets/img/ambiente.jpg" alt="Ambiente reservado da Dulce Hair" width="1280" height="1600" loading="lazy" decoding="async">
+        <source srcset="assets/img/experiencia.webp" type="image/webp">
+        <img src="assets/img/experiencia.jpg" alt="Cliente atendida na Dulce Hair com chanel de bico loiro finalizado" width="1050" height="1313" loading="lazy" decoding="async">
       </picture>
     </div>
   </div>

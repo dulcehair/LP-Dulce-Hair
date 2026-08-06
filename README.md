@@ -26,7 +26,7 @@ ao ar como está.
 | 4 | **Depoimentos** — hoje são caixas vazias marcadas | `index.html` → seção `#depoimentos` |
 | 5 | **Números da faixa de credibilidade** (12 anos, nota 5,0, 5.000+ atendimentos) | `index.html` → seção `.credbar` e selos do hero |
 | 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
-| 6 | **Fotos reais** do salão, da equipe e dos trabalhos | `assets/img/` (ver abaixo) |
+| ~~6~~ | ~~**Fotos reais**~~ — três trabalhos já no ar; falta foto do interior do salão | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
 | 8 | **IDs de pixel** (Meta / GA4 / Google Ads) | `index.html` → bloco `window.DULCE` |
 | ~~9~~ | ~~**Endereço do mapa**~~ — preenchido | `index.html` → seção `#localizacao` |
@@ -35,8 +35,8 @@ Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`
 Buscar por `⚠️` no `index.html` encontra todos.
 
 **Faltam:** depoimentos reais (4), conferir os números da faixa de
-credibilidade (5), confirmar o produto da progressiva (5b), fotos reais (6),
-domínio (7) e IDs de pixel (8).
+credibilidade (5), confirmar o produto da progressiva (5b), foto do interior do
+salão (6), domínio (7) e IDs de pixel (8).
 
 > **Sobre a alegação "sem formol".** A página afirma que o alisamento é feito com
 > ativos sem formol e com registro na Anvisa. Isso precisa corresponder exatamente
@@ -132,39 +132,41 @@ assunto certo, mesmo que a visita não tenha vindo pelo link da campanha.
 
 ## Imagens
 
-As imagens em `assets/img/` (exceto o logo) são **texturas provisórias** geradas
-por código: fios de cabelo iluminados em luz dourada, no tom da marca. Elas
-existem para a página não ter buracos até as fotos reais entrarem.
+A página usa **fotos reais do salão**, recortadas a partir de três originais:
+o bob (duas fotos num arquivo só, de frente e de perfil), o chanel de bico e a
+progressiva.
 
-**Substitua todas por fotos reais do salão.** Mantenha os mesmos nomes de arquivo
-e proporções aproximadas e nada mais precisa ser mexido:
+| Arquivo | Proporção | Onde aparece | Origem |
+|---|---|---|---|
+| `hero.jpg` / `.webp` | 1448×1086 | Fundo do topo, no desktop | progressiva |
+| `hero-mobile.jpg` | 815×1086 | Fundo do topo, no celular | progressiva |
+| `progressiva.jpg` | 4:5 | Seção da progressiva | progressiva |
+| `corte.jpg` | 4:5 | Seção do corte | bob, de frente |
+| `experiencia.jpg` | 4:5 | Seção "uma cliente por vez" | chanel de bico |
+| `galeria-bob.jpg` | 3:5 | Galeria de resultados | bob, de perfil |
+| `galeria-chanel.jpg` | 3:5 | Galeria de resultados | chanel de bico |
+| `galeria-progressiva.jpg` | 1,15:1 | Galeria de resultados | progressiva |
+| `og-image.jpg` | 1200×630 | Compartilhamento (WhatsApp, Facebook) | derivada do hero |
 
-| Arquivo | Proporção | O que deve ser |
-|---|---|---|
-| `hero.jpg` / `.webp` | 3:4 (retrato) | Foto principal — cliente com o cabelo pronto, luz quente, fundo escuro |
-| `progressiva.jpg` | 4:5 (retrato) | **Resultado de progressiva** — é a foto da seção principal da oferta |
-| `servico-progressiva.jpg` | 1:1 | Detalhe de fio alinhado (aparece na galeria) |
-| `servico-corte.jpg` | 1:1 | Detalhe de corte / tesoura em ação |
-| `servico-cor.jpg` | 1:1 | Resultado de coloração ou mechas |
-| `servico-tratamento.jpg` | 1:1 | Brilho do fio após tratamento |
-| `ambiente.jpg` | 4:5 (retrato) | Interior do salão |
-| `galeria-1.jpg` | 3:4 | Trabalho realizado |
-| `galeria-2.jpg` | 3:4 | Trabalho realizado |
-| `galeria-3.jpg` | 3:5 (mais alta) | Trabalho realizado — é a foto grande do mosaico |
-| `og-image.jpg` | 1200×630 | Imagem de compartilhamento (WhatsApp, Facebook) |
+Com três originais, cada foto aparece em dois lugares da página, sempre em
+enquadramentos diferentes e distantes um do outro. **Fotos novas resolvem isso** —
+as que fariam mais diferença, em ordem:
 
-Para a progressiva, foto de **antes e depois** converte bem mais do que foto só do
-depois — vale usar uma dessas em `progressiva.jpg` e outra na galeria.
+1. **Interior do salão vazio.** É a única coisa que nenhuma das três mostra.
+2. **Antes e depois de progressiva.** Converte bem mais do que foto só do depois.
+3. **Um cacheado e uma coloração**, para a galeria ter tipos de cabelo diferentes.
 
 Cada `<picture>` no HTML busca o `.webp` primeiro e cai para o `.jpg`. Se você só
 tiver JPG, apague a linha `<source ... type="image/webp">` correspondente — ou
 converta as fotos para WebP, que carrega mais rápido e ajuda o custo por clique.
 
-Para regenerar as texturas provisórias (precisa de Python e Pillow):
+O hero usa **duas versões da mesma foto**: uma deitada no desktop e uma em pé no
+celular. Cortar uma foto deitada para uma tela em pé perderia justamente o cabelo.
+Se trocar o hero, gere as duas.
 
-```bash
-python3 scripts/generate-textures.py
-```
+O `scripts/generate-textures.py` ficou como reserva: gera fundos abstratos de fios
+em luz dourada para quando faltar foto em algum espaço novo. Os arquivos saem com
+o prefixo `textura-`, então rodar o script nunca sobrescreve uma foto real.
 
 ---
 

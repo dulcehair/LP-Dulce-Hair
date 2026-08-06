@@ -2,9 +2,11 @@
 """
 Gera as texturas provisorias da landing page (fios de cabelo / seda em luz dourada).
 
-Sao imagens de apoio, feitas para a pagina nao ficar com buracos enquanto as
-fotos reais do salao nao entram. Substitua os arquivos em assets/img/ mantendo
-os mesmos nomes e proporcoes e a pagina continua funcionando.
+A pagina hoje usa as fotos reais do salao. Este script ficou como reserva:
+serve para gerar um fundo de apoio quando faltar foto para algum espaco novo.
+
+Os arquivos saem com o prefixo "textura-" justamente para nunca sobrescrever
+uma foto real. Para usar um deles, renomeie a mao e ajuste o index.html.
 
 Uso:  python3 scripts/generate-textures.py
 """
@@ -222,11 +224,11 @@ def main():
         img = compose(w, h, seed=job["seed"], count=job["count"], glow=job["glow"],
                       direction=job["direction"], scale=job["scale"], bright=job["bright"],
                       spread=job.get("spread", 1.0))
-        img.save(os.path.join(OUT, f"{job['name']}.jpg"), quality=86, optimize=True, progressive=True)
-        img.save(os.path.join(OUT, f"{job['name']}.webp"), quality=82, method=6)
+        img.save(os.path.join(OUT, f"textura-{job['name']}.jpg"), quality=86, optimize=True, progressive=True)
+        img.save(os.path.join(OUT, f"textura-{job['name']}.webp"), quality=82, method=6)
 
     # og:image (1200x630) recortado do hero
-    hero = Image.open(os.path.join(OUT, "hero.jpg"))
+    hero = Image.open(os.path.join(OUT, "textura-hero.jpg"))
     hw, hh = hero.size
     crop_h = int(hw * 630 / 1200)
     top = int(hh * 0.22)
@@ -236,7 +238,7 @@ def main():
     logo = logo.resize((lw, int(logo.height * lw / logo.width)), Image.LANCZOS)
     og = og.convert("RGBA")
     og.alpha_composite(logo, ((1200 - lw) // 2, (630 - logo.height) // 2))
-    og.convert("RGB").save(os.path.join(OUT, "og-image.jpg"), quality=88, optimize=True)
+    og.convert("RGB").save(os.path.join(OUT, "textura-og-image.jpg"), quality=88, optimize=True)
     print("  gerando og-image (1200x630)…")
     print("pronto.")
 
