@@ -24,7 +24,8 @@ ao ar como está.
 | ~~2~~ | ~~**Endereço completo e CEP**~~ — preenchido: Estr. do M'Boi Mirim, 2207 — Jardim das Flores, São Paulo/SP, 04905-022 | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
 | ~~3~~ | ~~**Horário de atendimento**~~ — preenchido: terça a sábado, 09h às 18h | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
 | ~~4~~ | ~~**Depoimentos**~~ — três avaliações reais do Google no ar | `index.html` → seção `#depoimentos` |
-| 5 | **"12 anos de tesoura na mão"** — único número da faixa ainda não confirmado (nota 4,8 e 29 avaliações conferem com o Perfil da Empresa) | `index.html` → seção `.credbar` |
+| ~~5~~ | ~~**Números da faixa**~~ — +7 anos e 5.000+ atendimentos informados pelo salão; nota 4,8 e 29 avaliações conferem com o Perfil da Empresa | `index.html` → seção `.credbar` |
+| 5c | **Serviços de unha** — confirmar quais entram no cartão de nail design (alongamento? gel? fibra?) e ajustar o texto | `index.html` → seção `#servicos` |
 | 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
 | ~~6~~ | ~~**Fotos reais**~~ — três trabalhos já no ar; falta foto do interior do salão | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
@@ -34,8 +35,23 @@ ao ar como está.
 Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`.
 Buscar por `⚠️` no `index.html` encontra todos.
 
-**Faltam:** confirmar os "12 anos" (5), o produto da progressiva (5b), foto do
-interior do salão (6), o domínio (7) e os IDs de pixel (8).
+**Faltam:** confirmar o produto da progressiva (5b), os serviços de unha (5c),
+foto do interior do salão (6), o domínio (7) e os IDs de pixel (8).
+
+### Como o mapa se comporta
+
+O embed do Google não é carregado junto com a página. Quando a seção de
+localização se aproxima da tela, o JavaScript faz um teste rápido para saber se
+o navegador alcança o Google:
+
+- **Alcança** (caso normal): o mapa é inserido e aparece sozinho.
+- **Não alcança** (extensão de privacidade, rede corporativa, prévia): fica o
+  endereço com os botões "Ver o mapa" e "Como chegar". O botão carrega o mapa
+  na marra, então existe sempre um caminho manual.
+
+Isso evita a tela de erro cinza que o embed desenha quando é bloqueado, e a
+página não paga o peso do Google Maps no carregamento inicial — o que ajuda no
+custo por clique.
 
 ### Sobre as avaliações
 

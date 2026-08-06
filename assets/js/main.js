@@ -240,6 +240,7 @@
         var el = entry.target;
         var alvo = parseFloat(el.getAttribute('data-count'));
         var casas = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        var prefixo = el.getAttribute('data-prefix') || '';
         var sufixo = el.getAttribute('data-suffix') || '';
         var inicio = performance.now();
         var dur = 1400;
@@ -248,7 +249,8 @@
           var p = Math.min(1, (agora - inicio) / dur);
           var eased = 1 - Math.pow(1 - p, 3);
           var v = alvo * eased;
-          el.textContent = (casas ? v.toFixed(casas).replace('.', ',') : fmt.format(Math.round(v))) + sufixo;
+          el.textContent = prefixo +
+            (casas ? v.toFixed(casas).replace('.', ',') : fmt.format(Math.round(v))) + sufixo;
           if (p < 1) requestAnimationFrame(passo);
         }
         requestAnimationFrame(passo);
@@ -292,6 +294,50 @@
   }
 
   /* ------------------------------------------------------------------------
+     6b. Mapa
+     ------------------------------------------------------------------------
+     O embed do Google só é carregado quando a seção se aproxima da tela e
+     depois de um teste de alcance. Onde o Google está bloqueado (extensão de
+     privacidade, rede corporativa, prévia), o iframe desenharia uma página de
+     erro cinza por cima de tudo — melhor manter o endereço e o botão de rota.
+     De quebra, a página não paga o embed do Google no carregamento inicial.
+     ------------------------------------------------------------------------ */
+  function initMapa() {
+    var box = doc.querySelector('[data-mapa-src]');
+    if (!box) return;
+
+    function carrega() {
+      if (box.querySelector('iframe')) return;
+      var f = doc.createElement('iframe');
+      f.title = 'Mapa da localização da Dulce Hair';
+      f.loading = 'lazy';
+      f.referrerPolicy = 'no-referrer-when-downgrade';
+      f.allowFullscreen = true;
+      f.src = box.getAttribute('data-mapa-src');
+      box.appendChild(f);
+      box.classList.add('mapa-carregado');
+    }
+
+    // Caminho manual: vale mesmo que o teste de alcance abaixo se engane.
+    var botao = box.querySelector('[data-mapa-abrir]');
+    if (botao) botao.addEventListener('click', carrega);
+
+    function tenta() {
+      try {
+        fetch('https://maps.google.com/favicon.ico', { mode: 'no-cors', cache: 'no-store' })
+          .then(carrega)
+          .catch(function () { /* sem alcance: fica o endereço */ });
+      } catch (e) { /* política de segurança estrita */ }
+    }
+
+    if (!('IntersectionObserver' in window)) { tenta(); return; }
+    var io = new IntersectionObserver(function (entries) {
+      if (entries[0].isIntersecting) { io.disconnect(); tenta(); }
+    }, { rootMargin: '400px' });
+    io.observe(box);
+  }
+
+  /* ------------------------------------------------------------------------
      7. Âncoras com compensação do header fixo
      ------------------------------------------------------------------------ */
   function initAncoras() {
@@ -327,6 +373,7 @@
     initReveal();
     initContadores();
     initFaq();
+    initMapa();
     initAncoras();
   }
 

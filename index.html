@@ -123,6 +123,7 @@
 
     <div class="hero-trust reveal" data-delay="4">
       <span class="trust-item">
+        <span class="trust-item__k trust-item__k--estrelas">
         <span class="stars" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
@@ -134,10 +135,18 @@
             <svg viewBox="0 0 24 24" fill="currentColor" class="star-parcial__cheia"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
           </span>
         </span>
-        <span><strong>4,8 no Google</strong> · 29 avaliações</span>
+          4,8 no Google
+        </span>
+        <span class="trust-item__v">29 avaliações</span>
       </span>
-      <span class="trust-item"><strong>Sem formol</strong> · produto com registro na Anvisa</span>
-      <span class="trust-item"><strong>Hora marcada</strong> · sem fila de espera</span>
+      <span class="trust-item">
+        <span class="trust-item__k">Sem formol</span>
+        <span class="trust-item__v">produto com registro na Anvisa</span>
+      </span>
+      <span class="trust-item">
+        <span class="trust-item__k">Hora marcada</span>
+        <span class="trust-item__v">sem fila de espera</span>
+      </span>
     </div>
   </div>
 
@@ -157,16 +166,16 @@
         <span class="credbar__label">De formol nos alisamentos</span>
       </div>
       <div class="credbar__item reveal" data-delay="1">
-        <span class="credbar__num gold" data-count="12" data-suffix=" anos">12 anos</span>
+        <span class="credbar__num gold" data-count="7" data-prefix="+" data-suffix=" anos">+7 anos</span>
         <span class="credbar__label">De tesoura na mão</span>
       </div>
       <div class="credbar__item reveal" data-delay="2">
         <span class="credbar__num gold" data-count="4.8" data-decimals="1">4,8</span>
-        <span class="credbar__label">Nota no Google</span>
+        <span class="credbar__label">Nota no Google · 29 avaliações</span>
       </div>
       <div class="credbar__item reveal" data-delay="3">
-        <span class="credbar__num gold" data-count="29">29</span>
-        <span class="credbar__label">Avaliações no Google</span>
+        <span class="credbar__num gold" data-count="5000" data-suffix="+">5.000+</span>
+        <span class="credbar__label">Atendimentos realizados</span>
       </div>
     </div>
   </div>
@@ -330,9 +339,11 @@
         <p>Cor pensada para a sua pele e para a raiz que vai crescer. Fórmula ajustada fio a fio, com transição confortável entre as manutenções.</p>
       </article>
 
+      <!-- ⚠️ Confirme com o salão quais serviços de unha entram aqui
+           (alongamento? gel? fibra?) e ajuste o texto. -->
       <article class="service reveal" data-delay="1">
-        <h3>Loiros, mechas & luzes</h3>
-        <p>Balayage, morena iluminada e loiros de alta performance com controle de porosidade. Clareamento planejado em etapas, respeitando o limite do fio.</p>
+        <h3>Nail design</h3>
+        <p>Esmaltação em gel, alongamento e manutenção, com cutilagem caprichada e acabamento que aguenta a semana inteira. Dá para fazer junto com o cabelo, no mesmo horário.</p>
       </article>
 
       <article class="service reveal" data-delay="2">
@@ -395,7 +406,7 @@
       <figure class="gallery__item reveal">
         <picture>
           <source srcset="assets/img/galeria-bob.webp" type="image/webp">
-          <img src="assets/img/galeria-bob.jpg" alt="Corte bob loiro visto de perfil, com a linha do corte marcada" width="670" height="1117" loading="lazy" decoding="async">
+          <img src="assets/img/galeria-bob.jpg" alt="Corte bob loiro visto de perfil, com a linha do corte marcada" width="670" height="893" loading="lazy" decoding="async">
         </picture>
         <figcaption>Bob</figcaption>
       </figure>
@@ -403,7 +414,7 @@
       <figure class="gallery__item reveal" data-delay="1">
         <picture>
           <source srcset="assets/img/galeria-chanel.webp" type="image/webp">
-          <img src="assets/img/galeria-chanel.jpg" alt="Chanel de bico loiro com mechas e camadas" width="788" height="1313" loading="lazy" decoding="async">
+          <img src="assets/img/galeria-chanel.jpg" alt="Chanel de bico loiro com mechas e camadas" width="788" height="1051" loading="lazy" decoding="async">
         </picture>
         <figcaption>Chanel de bico</figcaption>
       </figure>
@@ -411,7 +422,7 @@
       <figure class="gallery__item reveal" data-delay="2">
         <picture>
           <source srcset="assets/img/galeria-progressiva.webp" type="image/webp">
-          <img src="assets/img/galeria-progressiva.jpg" alt="Cabelo longo liso e brilhante após progressiva sem formol" width="1100" height="956" loading="lazy" decoding="async">
+          <img src="assets/img/galeria-progressiva.jpg" alt="Cabelo longo liso e brilhante após progressiva sem formol" width="814" height="1086" loading="lazy" decoding="async">
         </picture>
         <figcaption>Progressiva sem formol</figcaption>
       </figure>
@@ -599,17 +610,19 @@
       </div>
     </div>
 
-    <div class="map-frame reveal" data-delay="1">
-      <!-- Aparece enquanto o mapa carrega (e caso o embed seja bloqueado) -->
-      <p class="map-frame__fallback">Estr. do M'Boi Mirim, 2207 · Jardim das Flores<br>São Paulo/SP</p>
-      <iframe
-        title="Mapa da localização da Dulce Hair"
-        src="https://www.google.com/maps?q=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022&output=embed"
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        allowfullscreen></iframe>
+    <!-- O mapa entra por JavaScript quando a seção chega perto da tela, e só
+         depois de confirmar que o navegador alcança o Google. Assim ninguém
+         vê a página de erro cinza que o embed desenha quando é bloqueado —
+         no lugar dela fica o endereço com o botão de rota.
+         ⚠️ Ao trocar o endereço, troque nos dois links abaixo. -->
+    <div class="map-frame reveal" data-delay="1"
+         data-mapa-src="https://www.google.com/maps?q=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022&output=embed">
+      <div class="map-frame__fallback">
+        <p>Estr. do M'Boi Mirim, 2207<br>Jardim das Flores · São Paulo/SP</p>
+        <button type="button" class="btn btn--ghost btn--sm" data-mapa-abrir>Ver o mapa</button>
+      </div>
       <a class="map-frame__link" href="https://www.google.com/maps/search/?api=1&query=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022" target="_blank" rel="noopener">
-        Abrir no Google Maps
+        Como chegar
       </a>
     </div>
   </div>
@@ -726,7 +739,7 @@
           <li><a href="#corte">Corte assinatura</a></li>
           <li><a href="#servicos">Tratamento & reconstrução</a></li>
           <li><a href="#servicos">Coloração & tonalização</a></li>
-          <li><a href="#servicos">Loiros, mechas & luzes</a></li>
+          <li><a href="#servicos">Nail design</a></li>
           <li><a href="#servicos">Escova & finalização</a></li>
         </ul>
       </div>
@@ -796,7 +809,7 @@
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Corte de cabelo feminino" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tratamento e reconstrução capilar" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Coloração e tonalização" } },
-    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mechas, luzes e balayage" } },
+    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nail design, esmaltação em gel e alongamento de unhas" } },
     { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Escova e finalização" } }
   ]
 }
