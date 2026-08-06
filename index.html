@@ -43,14 +43,12 @@
     // Cada oferta (?oferta=progressiva | ?oferta=corte) troca esta mensagem —
     // ver a lista OFERTAS no início de assets/js/main.js.
     mensagem: 'Olá! Vim pelo site da Dulce Hair e gostaria de agendar um horário.',
-    // Botão do Uber. As coordenadas fixam o destino dentro do app.
-    // ⚠️ COMO PEGAR: abra o salão no Google Maps, clique com o botão direito
-    //    sobre o ponto e o primeiro item do menu são as coordenadas. Cole aqui.
-    //    Sem elas o botão ainda funciona, mas só com o endereço escrito,
-    //    e o Uber pode não achar o ponto exato.
-    uber: {
-      lat: '',   // ex.: '-23.681234'
-      lng: '',   // ex.: '-46.752345'
+    // Ponto do salão no mapa. Alimenta o botão "Como chegar" e o do Uber.
+    // Para pegar de novo: no Google Maps, clique com o botão direito sobre o
+    // ponto e o primeiro item do menu são as coordenadas.
+    local: {
+      lat: '-23.675781',
+      lng: '-46.752993',
       nome: 'Dulce Hair',
       endereco: "Estrada do M'Boi Mirim, 2207 - Jardim das Flores, São Paulo - SP, 04905-022"
     },
@@ -643,7 +641,7 @@
           4,8 · 29 avaliações no Google
         </p>
         <div class="map-card__acoes">
-          <a class="btn btn--primary btn--sm" href="https://www.google.com/maps/search/?api=1&query=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022" target="_blank" rel="noopener" data-cta="mapa-rota">
+          <a class="btn btn--primary btn--sm" data-rota data-cta="mapa-rota">
             Como chegar
           </a>
           <a class="btn btn--ghost btn--sm" data-uber data-cta="uber">

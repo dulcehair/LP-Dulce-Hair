@@ -30,15 +30,13 @@ ao ar como está.
 | ~~6~~ | ~~**Fotos reais**~~ — três trabalhos já no ar; falta foto do interior do salão | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
 | 8 | **IDs de pixel** (Meta / GA4 / Google Ads) | `index.html` → bloco `window.DULCE` |
-| 10 | **Coordenadas do salão** para o botão do Uber | `index.html` → `window.DULCE.uber` |
 | ~~9~~ | ~~**Endereço do mapa**~~ — preenchido | `index.html` → seção `#localizacao` |
 
 Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`.
 Buscar por `⚠️` no `index.html` encontra todos.
 
 **Faltam:** confirmar o produto da progressiva (5b), os serviços de unha (5c),
-foto do interior do salão (6), o domínio (7), os IDs de pixel (8) e as
-coordenadas do Uber (10).
+foto do interior do salão (6), o domínio (7) e os IDs de pixel (8).
 
 ### O bloco do mapa
 
@@ -57,19 +55,20 @@ da tela, o JavaScript testa se o navegador alcança o Google:
 De quebra, a página não paga o peso do Google Maps no carregamento inicial, o
 que ajuda no custo por clique.
 
-### Botão do Uber
+### Como chegar e Chamar Uber
 
-O link é o universal do Uber (`m.uber.com/ul/`): abre o app com o destino já
-preenchido e cai no site quando o app não está instalado.
+As coordenadas do salão ficam em `window.DULCE.local` e alimentam os dois
+botões, para nunca apontarem para pontos diferentes:
 
-Para o destino cair no ponto certo, preencha as coordenadas em
-`window.DULCE.uber`. **Como pegar:** abra o salão no Google Maps, clique com o
-botão direito sobre o ponto e o primeiro item do menu são as coordenadas.
+- **Como chegar** abre a rota no Google Maps já traçada até o ponto exato.
+- **Chamar Uber** usa o link universal (`m.uber.com/ul/`): abre o app com o
+  destino preenchido e cai no site quando o app não está instalado.
 
-Sem elas o botão continua funcionando, mas leva só o endereço escrito, e o Uber
-pode parar num ponto aproximado da rua.
+Se o ponto mudar, troque só as coordenadas na configuração. Para pegá-las de
+novo: no Google Maps, clique com o botão direito sobre o ponto e o primeiro item
+do menu são as coordenadas.
 
-O clique é rastreado como conversão, com origem `uber`.
+Os dois cliques são rastreados como conversão, com origem `mapa-rota` e `uber`.
 
 ### Sobre as avaliações
 
@@ -132,8 +131,14 @@ Tudo que a página precisa saber está num único bloco no `<head>` do `index.ht
 
 ```js
 window.DULCE = {
-  whatsapp: '5511999999999',   // DDI + DDD + número, só dígitos
+  whatsapp: '5511985969542',   // DDI + DDD + número, só dígitos
   mensagem: 'Olá! Vim pelo site da Dulce Hair e gostaria de agendar um horário.',
+  local: {                     // alimenta "Como chegar" e "Chamar Uber"
+    lat: '-23.675781',
+    lng: '-46.752993',
+    nome: 'Dulce Hair',
+    endereco: "Estrada do M'Boi Mirim, 2207 - Jardim das Flores, São Paulo - SP, 04905-022"
+  },
   metaPixelId: '',             // '123456789012345'
   ga4Id: '',                   // 'G-XXXXXXXXXX'
   googleAdsId: '',             // 'AW-XXXXXXXXX'

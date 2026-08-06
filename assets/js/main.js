@@ -161,35 +161,42 @@
   }
 
   /* ------------------------------------------------------------------------
-     2b. Botão do Uber
+     2b. Rota e Uber
      ------------------------------------------------------------------------
      O link universal do Uber abre o app com o destino já preenchido, e cai no
      site quando o app não está instalado. As coordenadas vêm da configuração;
      sem elas o link vai só com o endereço escrito, que é menos preciso.
      ------------------------------------------------------------------------ */
-  function montaUber() {
-    var u = CFG.uber || {};
-    var links = doc.querySelectorAll('[data-uber]');
-    if (!links.length) return;
-
-    var p = ['action=setPickup', 'pickup=my_location'];
-    if (u.lat && u.lng) {
-      p.push('dropoff[latitude]=' + encodeURIComponent(u.lat));
-      p.push('dropoff[longitude]=' + encodeURIComponent(u.lng));
-    }
-    if (u.nome) p.push('dropoff[nickname]=' + encodeURIComponent(u.nome));
-    if (u.endereco) p.push('dropoff[formatted_address]=' + encodeURIComponent(u.endereco));
-
-    var href = 'https://m.uber.com/ul/?' + p.join('&');
-
-    Array.prototype.forEach.call(links, function (el) {
+  function aplicaLink(seletor, href) {
+    Array.prototype.forEach.call(doc.querySelectorAll(seletor), function (el) {
       el.setAttribute('href', href);
       el.setAttribute('target', '_blank');
       el.setAttribute('rel', 'noopener');
       el.addEventListener('click', function () {
-        trackLead(el.getAttribute('data-cta') || 'uber');
+        trackLead(el.getAttribute('data-cta') || 'rota');
       });
     });
+  }
+
+  function montaRotas() {
+    var l = CFG.local || {};
+    var temCoord = l.lat && l.lng;
+    var ponto = temCoord ? l.lat + ',' + l.lng : (l.endereco || '');
+    if (!ponto) return;
+
+    // Rota no Google Maps: com coordenadas o destino cai no ponto exato.
+    aplicaLink('[data-rota]',
+      'https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(ponto));
+
+    // Uber: link universal, abre o app e cai no site quando não há app.
+    var p = ['action=setPickup', 'pickup=my_location'];
+    if (temCoord) {
+      p.push('dropoff[latitude]=' + encodeURIComponent(l.lat));
+      p.push('dropoff[longitude]=' + encodeURIComponent(l.lng));
+    }
+    if (l.nome) p.push('dropoff[nickname]=' + encodeURIComponent(l.nome));
+    if (l.endereco) p.push('dropoff[formatted_address]=' + encodeURIComponent(l.endereco));
+    aplicaLink('[data-uber]', 'https://m.uber.com/ul/?' + p.join('&'));
   }
 
   /* ------------------------------------------------------------------------
@@ -401,7 +408,7 @@
     initTracking();
     aplicaOferta(paramsDaUrl());
     montaLinks();
-    montaUber();
+    montaRotas();
     initScrollUI();
     initReveal();
     initContadores();
