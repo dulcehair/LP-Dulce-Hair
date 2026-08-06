@@ -1438,15 +1438,20 @@ body::before {
   height: 100%;
 }
 
+.map-frame {
+  min-height: 420px;
+}
+
 .map-frame iframe {
   position: relative;
   z-index: 1;
   display: block;
   width: 100%;
   height: 100%;
-  min-height: 340px;
+  min-height: 420px;
   border: 0;
-  filter: grayscale(1) invert(0.92) contrast(0.86) brightness(0.95);
+  /* Só uma leve dessaturação: o mapa precisa parecer um mapa. */
+  filter: saturate(0.72) contrast(1.02);
 }
 
 /* Fica atrás do iframe: só aparece se o mapa não carregar */
@@ -1455,11 +1460,18 @@ body::before {
   inset: 0;
   z-index: 0;
   display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 1.5rem;
-  text-align: center;
+  align-content: end;
+  justify-items: end;
   padding: 1.5rem;
+  /* textura discreta, para o quadro não ficar um vazio quando o mapa não vem */
+  background-image: radial-gradient(
+      circle at 30% 20%,
+      rgba(201, 168, 124, 0.07),
+      transparent 60%
+    ),
+    linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: auto, 3.5rem 3.5rem, 3.5rem 3.5rem;
 }
 
 /* Quando o mapa entra, o bloco de trás sai do caminho do teclado */
@@ -1467,45 +1479,57 @@ body::before {
   display: none;
 }
 
-.map-frame__fallback p {
-  margin: 0;
-  color: var(--cream-dim);
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-
-.map-frame__fallback p::before {
-  content: '';
-  display: block;
-  width: 2.25rem;
-  height: 1px;
-  margin: 0 auto 1.1rem;
-  background: var(--gold);
-  opacity: 0.6;
-}
-
-.map-frame__link {
+/* Cartão do salão flutuando sobre o mapa */
+.map-card {
   position: absolute;
   z-index: 2;
-  right: 0.85rem;
-  bottom: 0.85rem;
-  padding: 0.6rem 1.1rem;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  max-width: 19rem;
+  display: grid;
+  gap: 0.55rem;
+  justify-items: start;
+  padding: 1.35rem 1.4rem 1.5rem;
   border: 1px solid var(--line-gold);
   border-radius: var(--radius);
-  background: rgba(11, 10, 9, 0.86);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  font-family: var(--f-display);
-  font-size: 0.7rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold-lt);
-  transition: border-color 0.3s var(--ease), color 0.3s var(--ease);
+  background: rgba(11, 10, 9, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.9);
 }
 
-.map-frame__link:hover {
-  border-color: var(--gold);
+.map-card__nome {
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 300;
+  letter-spacing: 0.02em;
   color: var(--cream);
+}
+
+.map-card__end {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--cream-dim);
+}
+
+.map-card__nota {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.map-card__acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.65rem;
+}
+
+.map-card__acoes .btn {
+  padding-inline: 1.05rem;
 }
 
 /* --------------------------------------------------------------------------

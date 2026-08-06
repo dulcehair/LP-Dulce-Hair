@@ -43,6 +43,17 @@
     // Cada oferta (?oferta=progressiva | ?oferta=corte) troca esta mensagem —
     // ver a lista OFERTAS no início de assets/js/main.js.
     mensagem: 'Olá! Vim pelo site da Dulce Hair e gostaria de agendar um horário.',
+    // Botão do Uber. As coordenadas fixam o destino dentro do app.
+    // ⚠️ COMO PEGAR: abra o salão no Google Maps, clique com o botão direito
+    //    sobre o ponto e o primeiro item do menu são as coordenadas. Cole aqui.
+    //    Sem elas o botão ainda funciona, mas só com o endereço escrito,
+    //    e o Uber pode não achar o ponto exato.
+    uber: {
+      lat: '',   // ex.: '-23.681234'
+      lng: '',   // ex.: '-46.752345'
+      nome: 'Dulce Hair',
+      endereco: "Estrada do M'Boi Mirim, 2207 - Jardim das Flores, São Paulo - SP, 04905-022"
+    },
     // IDs de rastreamento — deixe vazio para desativar
     metaPixelId: '',            // ex.: '123456789012345'
     ga4Id: '',                  // ex.: 'G-XXXXXXXXXX'
@@ -618,12 +629,29 @@
     <div class="map-frame reveal" data-delay="1"
          data-mapa-src="https://www.google.com/maps?q=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022&output=embed">
       <div class="map-frame__fallback">
-        <p>Estr. do M'Boi Mirim, 2207<br>Jardim das Flores · São Paulo/SP</p>
         <button type="button" class="btn btn--ghost btn--sm" data-mapa-abrir>Ver o mapa</button>
       </div>
-      <a class="map-frame__link" href="https://www.google.com/maps/search/?api=1&query=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022" target="_blank" rel="noopener">
-        Como chegar
-      </a>
+
+      <!-- Cartão do salão sobre o mapa -->
+      <div class="map-card">
+        <p class="map-card__nome">Dulce Hair</p>
+        <p class="map-card__end">Estr. do M'Boi Mirim, 2207<br>Jardim das Flores · São Paulo/SP</p>
+        <p class="map-card__nota">
+          <span class="stars" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+          </span>
+          4,8 · 29 avaliações no Google
+        </p>
+        <div class="map-card__acoes">
+          <a class="btn btn--primary btn--sm" href="https://www.google.com/maps/search/?api=1&query=Estrada+do+M%27Boi+Mirim%2C+2207+-+Jardim+das+Flores%2C+S%C3%A3o+Paulo+-+SP%2C+04905-022" target="_blank" rel="noopener" data-cta="mapa-rota">
+            Como chegar
+          </a>
+          <a class="btn btn--ghost btn--sm" data-uber data-cta="uber">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v8.5a1 1 0 0 1-1 1h-1.1a3 3 0 0 1-5.8 0h-2.2a3 3 0 0 1-5.8 0H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm2.9 10a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8zm10.2 0a1.4 1.4 0 1 0 0 2.8 1.4 1.4 0 0 0 0-2.8z"/></svg>
+            Chamar Uber
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </section>

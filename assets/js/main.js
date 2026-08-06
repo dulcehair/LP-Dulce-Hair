@@ -161,6 +161,38 @@
   }
 
   /* ------------------------------------------------------------------------
+     2b. Botão do Uber
+     ------------------------------------------------------------------------
+     O link universal do Uber abre o app com o destino já preenchido, e cai no
+     site quando o app não está instalado. As coordenadas vêm da configuração;
+     sem elas o link vai só com o endereço escrito, que é menos preciso.
+     ------------------------------------------------------------------------ */
+  function montaUber() {
+    var u = CFG.uber || {};
+    var links = doc.querySelectorAll('[data-uber]');
+    if (!links.length) return;
+
+    var p = ['action=setPickup', 'pickup=my_location'];
+    if (u.lat && u.lng) {
+      p.push('dropoff[latitude]=' + encodeURIComponent(u.lat));
+      p.push('dropoff[longitude]=' + encodeURIComponent(u.lng));
+    }
+    if (u.nome) p.push('dropoff[nickname]=' + encodeURIComponent(u.nome));
+    if (u.endereco) p.push('dropoff[formatted_address]=' + encodeURIComponent(u.endereco));
+
+    var href = 'https://m.uber.com/ul/?' + p.join('&');
+
+    Array.prototype.forEach.call(links, function (el) {
+      el.setAttribute('href', href);
+      el.setAttribute('target', '_blank');
+      el.setAttribute('rel', 'noopener');
+      el.addEventListener('click', function () {
+        trackLead(el.getAttribute('data-cta') || 'uber');
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------------
      3. Header fixo + barra mobile
      ------------------------------------------------------------------------ */
   function initScrollUI() {
@@ -369,6 +401,7 @@
     initTracking();
     aplicaOferta(paramsDaUrl());
     montaLinks();
+    montaUber();
     initScrollUI();
     initReveal();
     initContadores();

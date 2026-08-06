@@ -30,28 +30,46 @@ ao ar como está.
 | ~~6~~ | ~~**Fotos reais**~~ — três trabalhos já no ar; falta foto do interior do salão | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
 | 8 | **IDs de pixel** (Meta / GA4 / Google Ads) | `index.html` → bloco `window.DULCE` |
+| 10 | **Coordenadas do salão** para o botão do Uber | `index.html` → `window.DULCE.uber` |
 | ~~9~~ | ~~**Endereço do mapa**~~ — preenchido | `index.html` → seção `#localizacao` |
 
 Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`.
 Buscar por `⚠️` no `index.html` encontra todos.
 
 **Faltam:** confirmar o produto da progressiva (5b), os serviços de unha (5c),
-foto do interior do salão (6), o domínio (7) e os IDs de pixel (8).
+foto do interior do salão (6), o domínio (7), os IDs de pixel (8) e as
+coordenadas do Uber (10).
 
-### Como o mapa se comporta
+### O bloco do mapa
 
-O embed do Google não é carregado junto com a página. Quando a seção de
-localização se aproxima da tela, o JavaScript faz um teste rápido para saber se
-o navegador alcança o Google:
+Sobre o mapa fica um cartão fixo com o nome do salão, o endereço, a nota do
+Google e dois botões: **Como chegar** (abre o Google Maps) e **Chamar Uber**.
 
-- **Alcança** (caso normal): o mapa é inserido e aparece sozinho.
+O embed do Google não é carregado junto com a página. Quando a seção se aproxima
+da tela, o JavaScript testa se o navegador alcança o Google:
+
+- **Alcança** (caso normal): o mapa é inserido e aparece sozinho, sem clique.
 - **Não alcança** (extensão de privacidade, rede corporativa, prévia): fica o
-  endereço com os botões "Ver o mapa" e "Como chegar". O botão carrega o mapa
-  na marra, então existe sempre um caminho manual.
+  fundo quadriculado com o cartão por cima e um botão "Ver o mapa", que carrega
+  o embed na marra. Assim existe sempre um caminho manual, e ninguém vê a tela
+  de erro cinza que o iframe desenha quando é bloqueado.
 
-Isso evita a tela de erro cinza que o embed desenha quando é bloqueado, e a
-página não paga o peso do Google Maps no carregamento inicial — o que ajuda no
-custo por clique.
+De quebra, a página não paga o peso do Google Maps no carregamento inicial, o
+que ajuda no custo por clique.
+
+### Botão do Uber
+
+O link é o universal do Uber (`m.uber.com/ul/`): abre o app com o destino já
+preenchido e cai no site quando o app não está instalado.
+
+Para o destino cair no ponto certo, preencha as coordenadas em
+`window.DULCE.uber`. **Como pegar:** abra o salão no Google Maps, clique com o
+botão direito sobre o ponto e o primeiro item do menu são as coordenadas.
+
+Sem elas o botão continua funcionando, mas leva só o endereço escrito, e o Uber
+pode parar num ponto aproximado da rua.
+
+O clique é rastreado como conversão, com origem `uber`.
 
 ### Sobre as avaliações
 
