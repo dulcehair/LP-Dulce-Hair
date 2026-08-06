@@ -23,8 +23,8 @@ ao ar como está.
 | ~~1~~ | ~~**Número do WhatsApp**~~ — preenchido: `5511985969542` | `index.html` → bloco `window.DULCE`, no `<head>` |
 | ~~2~~ | ~~**Endereço completo e CEP**~~ — preenchido: Estr. do M'Boi Mirim, 2207 — Jardim das Flores, São Paulo/SP, 04905-022 | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
 | ~~3~~ | ~~**Horário de atendimento**~~ — preenchido: terça a sábado, 09h às 18h | `index.html` → seção `#localizacao`, rodapé e JSON-LD |
-| 4 | **Depoimentos** — hoje são caixas vazias marcadas | `index.html` → seção `#depoimentos` |
-| 5 | **Números da faixa de credibilidade** (12 anos, nota 5,0, 5.000+ atendimentos) | `index.html` → seção `.credbar` e selos do hero |
+| ~~4~~ | ~~**Depoimentos**~~ — três avaliações reais do Google no ar | `index.html` → seção `#depoimentos` |
+| 5 | **"12 anos de tesoura na mão"** — único número da faixa ainda não confirmado (nota 4,8 e 29 avaliações conferem com o Perfil da Empresa) | `index.html` → seção `.credbar` |
 | 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
 | ~~6~~ | ~~**Fotos reais**~~ — três trabalhos já no ar; falta foto do interior do salão | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
@@ -34,9 +34,27 @@ ao ar como está.
 Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`.
 Buscar por `⚠️` no `index.html` encontra todos.
 
-**Faltam:** depoimentos reais (4), conferir os números da faixa de
-credibilidade (5), confirmar o produto da progressiva (5b), foto do interior do
-salão (6), domínio (7) e IDs de pixel (8).
+**Faltam:** confirmar os "12 anos" (5), o produto da progressiva (5b), foto do
+interior do salão (6), o domínio (7) e os IDs de pixel (8).
+
+### Sobre as avaliações
+
+A nota (4,8) e o número de avaliações (29) vêm do Perfil da Empresa no Google e
+aparecem no topo e na faixa de credibilidade. Se esses números mudarem, atualize
+os dois lugares.
+
+Os três depoimentos são avaliações reais, copiadas na íntegra. **Ao trocar ou
+acrescentar, mantenha o texto exatamente como a cliente escreveu.**
+
+Não há marcação `aggregateRating` nos dados estruturados, e isso é proposital: o
+Google não aceita que um site marque a própria nota vinda de avaliações de
+terceiros, e fazer isso pode render uma ação manual.
+
+### Uma tarefa fora do código
+
+O Perfil da Empresa no Google hoje aponta o campo "site" para
+`sites.appbeleza.com.br`. Quando esta página estiver no ar, troque o link lá —
+é tráfego qualificado e gratuito caindo na página errada.
 
 > **Sobre a alegação "sem formol".** A página afirma que o alisamento é feito com
 > ativos sem formol e com registro na Anvisa. Isso precisa corresponder exatamente
