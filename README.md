@@ -27,7 +27,7 @@ ao ar como está.
 | ~~5~~ | ~~**Números da faixa**~~ — +7 anos e 5.000+ atendimentos informados pelo salão; nota 4,8 e 29 avaliações conferem com o Perfil da Empresa | `index.html` → seção `.credbar` |
 | 5c | **Serviços de unha** — confirmar quais entram no cartão de nail design (alongamento? gel? fibra?) e ajustar o texto | `index.html` → seção `#servicos` |
 | 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
-| ~~6~~ | ~~**Fotos reais**~~ — três trabalhos já no ar; falta foto do interior do salão | `assets/img/` (ver abaixo) |
+| ~~6~~ | ~~**Fotos reais**~~ — interior do salão e três trabalhos no ar | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
 | 8 | **IDs de pixel** (Meta / GA4 / Google Ads) | `index.html` → bloco `window.DULCE` |
 | ~~9~~ | ~~**Endereço do mapa**~~ — preenchido | `index.html` → seção `#localizacao` |
@@ -36,7 +36,7 @@ Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`
 Buscar por `⚠️` no `index.html` encontra todos.
 
 **Faltam:** confirmar o produto da progressiva (5b), os serviços de unha (5c),
-foto do interior do salão (6), o domínio (7) e os IDs de pixel (8).
+o domínio (7) e os IDs de pixel (8).
 
 ### O bloco do mapa
 
@@ -189,14 +189,14 @@ assunto certo, mesmo que a visita não tenha vindo pelo link da campanha.
 
 ## Imagens
 
-A página usa **fotos reais do salão**, recortadas a partir de três originais:
-o bob (duas fotos num arquivo só, de frente e de perfil), o chanel de bico e a
-progressiva.
+A página usa **fotos reais do salão**, recortadas a partir de quatro originais:
+o interior do salão, o bob (duas fotos num arquivo só, de frente e de perfil),
+o chanel de bico e a progressiva.
 
 | Arquivo | Proporção | Onde aparece | Origem |
 |---|---|---|---|
-| `hero.jpg` / `.webp` | 1448×1086 | Fundo do topo, no desktop | progressiva |
-| `hero-mobile.jpg` | 815×1086 | Fundo do topo, no celular | progressiva |
+| `hero.jpg` / `.webp` | 1600×1200 | Fundo do topo, no desktop | salão |
+| `hero-mobile.jpg` | 900×1200 | Fundo do topo, no celular | salão |
 | `progressiva.jpg` | 4:5 | Seção da progressiva | progressiva |
 | `corte.jpg` | 4:5 | Seção do corte | bob, de frente |
 | `experiencia.jpg` | 4:5 | Seção "uma cliente por vez" | chanel de bico |
@@ -205,13 +205,13 @@ progressiva.
 | `galeria-progressiva.jpg` | 1,15:1 | Galeria de resultados | progressiva |
 | `og-image.jpg` | 1200×630 | Compartilhamento (WhatsApp, Facebook) | derivada do hero |
 
-Com três originais, cada foto aparece em dois lugares da página, sempre em
-enquadramentos diferentes e distantes um do outro. **Fotos novas resolvem isso** —
-as que fariam mais diferença, em ordem:
+A foto do salão aparece só no topo. As três dos trabalhos aparecem em dois
+lugares cada, sempre em enquadramentos diferentes e distantes um do outro.
+**Fotos novas resolvem isso** — as que fariam mais diferença, em ordem:
 
-1. **Interior do salão vazio.** É a única coisa que nenhuma das três mostra.
-2. **Antes e depois de progressiva.** Converte bem mais do que foto só do depois.
-3. **Um cacheado e uma coloração**, para a galeria ter tipos de cabelo diferentes.
+1. **Antes e depois de progressiva.** Converte bem mais do que foto só do depois.
+2. **Um cacheado e uma coloração**, para a galeria ter tipos de cabelo diferentes.
+3. **Um trabalho de unha**, agora que nail design entrou nos serviços.
 
 Cada `<picture>` no HTML busca o `.webp` primeiro e cai para o `.jpg`. Se você só
 tiver JPG, apague a linha `<source ... type="image/webp">` correspondente — ou

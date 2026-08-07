@@ -9,21 +9,21 @@ DEST = '/home/user/LP-Dulce-Hair/assets/img'
 
 # (arquivo de origem, caixa de recorte, nome de saída)
 CORTES = [
-    # hero: paisagem no desktop, retrato no celular (a mesma foto, enquadramentos diferentes)
-    ('progressiva.png', None,                     'hero'),
-    ('progressiva.png', (252, 0, 1067, 1086),     'hero-mobile'),
+    # hero: o salão. Paisagem no desktop, retrato no celular.
+    ('salao.jpg',       None,                     'hero'),
+    ('salao.jpg',       (700, 0, 1600, 1200),     'hero-mobile'),
     # seção da progressiva: retrato 4:5 fechado no comprimento
     ('progressiva.png', (226, 0, 1095, 1086),     'progressiva'),
-    # galeria: faixa larga mostrando o brilho do fio
-    ('progressiva.png', (200, 60, 1300, 1016),    'galeria-progressiva'),
+    # galeria: retrato 3:4, mesmo formato dos outros dois trabalhos
+    ('progressiva.png', (300, 0, 1114, 1086),     'galeria-progressiva'),
     # seção do corte: quadrado no rosto
     ('_esq.png',        (0, 0, 692, 865),         'corte'),
-    # galeria: perfil do bob
-    ('_dir.png',        (0, 14, 670, 1131),       'galeria-bob'),
+    # galeria: perfil do bob, 3:4
+    ('_dir.png',        (0, 40, 670, 933),        'galeria-bob'),
     # seção "uma cliente por vez": retrato 4:5
     ('chanel.png',      (25, 0, 1075, 1313),      'experiencia'),
-    # galeria: chanel de bico
-    ('chanel.png',      (156, 0, 944, 1313),      'galeria-chanel'),
+    # galeria: chanel de bico, 3:4
+    ('chanel.png',      (110, 40, 898, 1091),     'galeria-chanel'),
 ]
 
 
@@ -44,7 +44,7 @@ def main():
     og = hero.crop((0, topo, hw, topo + alvo_h)).resize((1200, 630), Image.LANCZOS)
     # escurece para o logo branco aparecer
     escuro = Image.new('RGB', (1200, 630), (11, 10, 9))
-    og = Image.blend(og, escuro, 0.45)
+    og = Image.blend(og, escuro, 0.66)
     logo = Image.open(os.path.join(DEST, 'logo-dulce-hair.png')).convert('RGBA')
     lw = 480
     logo = logo.resize((lw, int(logo.height * lw / logo.width)), Image.LANCZOS)
