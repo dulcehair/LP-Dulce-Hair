@@ -26,6 +26,8 @@ ao ar como está.
 | ~~4~~ | ~~**Depoimentos**~~ — três avaliações reais do Google no ar | `index.html` → seção `#depoimentos` |
 | ~~5~~ | ~~**Números da faixa**~~ — +7 anos e 5.000+ atendimentos informados pelo salão; nota 4,8 e 29 avaliações conferem com o Perfil da Empresa | `index.html` → seção `.credbar` |
 | 5c | **Serviços de unha** — confirmar quais entram no cartão de nail design (alongamento? gel? fibra?) e ajustar o texto | `index.html` → seção `#servicos` |
+| 11 | **Nome da profissional** para abrir o parágrafo de "quem vai cuidar do seu cabelo" | `index.html` → seção `#diferenciais` |
+| 12 | **Foto da profissional em resolução original** (a atual tem 683px de largura) | `assets/img/equipe.jpg` |
 | 5b | **Produto da progressiva**: linha/marca usada e número de registro na Anvisa (a duração — até 3 meses — já está confirmada) | `index.html` → seção `#progressiva` e FAQ |
 | ~~6~~ | ~~**Fotos reais**~~ — interior do salão e três trabalhos no ar | `assets/img/` (ver abaixo) |
 | 7 | **Domínio** nas tags `canonical`, `og:url`, `og:image` e no JSON-LD | `index.html` → `<head>` |
@@ -36,7 +38,8 @@ Os pontos que ainda faltam estão marcados no código com o comentário `⚠️`
 Buscar por `⚠️` no `index.html` encontra todos.
 
 **Faltam:** confirmar o produto da progressiva (5b), os serviços de unha (5c),
-o domínio (7) e os IDs de pixel (8).
+o domínio (7), os IDs de pixel (8), o nome da profissional (11) e a foto dela em
+resolução original (12).
 
 ### O bloco do mapa
 
@@ -189,8 +192,8 @@ assunto certo, mesmo que a visita não tenha vindo pelo link da campanha.
 
 ## Imagens
 
-A página usa **fotos reais do salão**, recortadas a partir de quatro originais:
-o interior do salão, o bob (duas fotos num arquivo só, de frente e de perfil),
+A página usa **fotos reais do salão**, recortadas a partir de cinco originais:
+o interior do salão, a profissional com uma cliente, o bob (duas fotos num arquivo só, de frente e de perfil),
 o chanel de bico e a progressiva.
 
 | Arquivo | Proporção | Onde aparece | Origem |
@@ -199,7 +202,7 @@ o chanel de bico e a progressiva.
 | `hero-mobile.jpg` | 900×1200 | Fundo do topo, no celular | salão |
 | `progressiva.jpg` | 4:5 | Seção da progressiva | progressiva |
 | `corte.jpg` | 4:5 | Seção do corte | bob, de frente |
-| `experiencia.jpg` | 4:5 | Seção "uma cliente por vez" | chanel de bico |
+| `equipe.jpg` | 4:5 | Seção "quem vai cuidar do seu cabelo" | profissional com cliente |
 | `galeria-bob.jpg` | 3:5 | Galeria de resultados | bob, de perfil |
 | `galeria-chanel.jpg` | 3:5 | Galeria de resultados | chanel de bico |
 | `galeria-progressiva.jpg` | 1,15:1 | Galeria de resultados | progressiva |

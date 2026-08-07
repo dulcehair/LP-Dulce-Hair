@@ -20,8 +20,8 @@ CORTES = [
     ('_esq.png',        (0, 0, 692, 865),         'corte'),
     # galeria: perfil do bob, 3:4
     ('_dir.png',        (0, 40, 670, 933),        'galeria-bob'),
-    # seção "uma cliente por vez": retrato 4:5
-    ('chanel.png',      (25, 0, 1075, 1313),      'experiencia'),
+    # seção "quem vai cuidar do seu cabelo": a profissional com a cliente
+    ('profissional.jpg', (0, 0, 683, 854),        'equipe'),
     # galeria: chanel de bico, 3:4
     ('chanel.png',      (110, 40, 898, 1091),     'galeria-chanel'),
 ]
