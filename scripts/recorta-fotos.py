@@ -10,8 +10,8 @@ DEST = '/home/user/LP-Dulce-Hair/assets/img'
 # (arquivo de origem, caixa de recorte, nome de saída)
 CORTES = [
     # hero: o salão. Paisagem no desktop, retrato no celular.
-    ('salao.jpg',       None,                     'hero'),
-    ('salao.jpg',       (700, 0, 1600, 1200),     'hero-mobile'),
+    ('salao-sem-ventilador.jpg', None,            'hero'),
+    ('salao-sem-ventilador.jpg', (700, 0, 1600, 1200), 'hero-mobile'),
     # seção da progressiva: retrato 4:5 fechado no comprimento
     ('progressiva.png', (226, 0, 1095, 1086),     'progressiva'),
     # galeria: retrato 3:4, mesmo formato dos outros dois trabalhos

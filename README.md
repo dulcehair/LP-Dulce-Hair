@@ -224,6 +224,11 @@ O hero usa **duas versões da mesma foto**: uma deitada no desktop e uma em pé 
 celular. Cortar uma foto deitada para uma tela em pé perderia justamente o cabelo.
 Se trocar o hero, gere as duas.
 
+O `scripts/tira-ventilador.py` removeu o ventilador de parede da foto do salão.
+A região é preenchida resolvendo a equação de Laplace com as bordas fixas na
+parede em volta, o que reconstrói o degradê da iluminação sem emenda. Serve para
+qualquer objeto sobre superfície lisa; para fundo com textura ou padrão, não.
+
 O `scripts/generate-textures.py` ficou como reserva: gera fundos abstratos de fios
 em luz dourada para quando faltar foto em algum espaço novo. Os arquivos saem com
 o prefixo `textura-`, então rodar o script nunca sobrescreve uma foto real.
