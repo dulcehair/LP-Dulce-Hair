@@ -192,10 +192,11 @@ assunto certo, mesmo que a visita não tenha vindo pelo link da campanha.
 
 ## Imagens
 
-A página usa **fotos reais do salão**, recortadas a partir de seis originais:
+A página usa **fotos reais do salão**, recortadas a partir de sete originais:
 o interior do salão, a profissional com uma cliente, o bob (duas fotos num
-arquivo só, de frente e de perfil), o chanel de bico e o tríptico de estúdio
-da progressiva (três fotos lado a lado num arquivo só).
+arquivo só, de frente e de perfil), o chanel de bico, a progressiva no ambiente
+real do salão e o tríptico de estúdio da progressiva (três fotos lado a lado
+num arquivo só).
 
 | Arquivo | Proporção | Onde aparece | Origem |
 |---|---|---|---|
@@ -206,14 +207,20 @@ da progressiva (três fotos lado a lado num arquivo só).
 | `equipe.jpg` | 4:5 | Seção "quem vai cuidar do seu cabelo" | profissional com cliente |
 | `galeria-bob.jpg` | 3:5 | Galeria de resultados | bob, de perfil |
 | `galeria-chanel.jpg` | 3:5 | Galeria de resultados | chanel de bico |
-| `galeria-progressiva.jpg` | ~4:5 | Galeria de resultados | tríptico, painel central |
+| `galeria-progressiva.jpg` | 3:4 | Galeria de resultados | progressiva, no salão |
 | `og-image.jpg` | 1200×630 | Compartilhamento (WhatsApp, Facebook) | derivada do hero |
 
-O tríptico da progressiva (`progressiva-estudio.jpg`) é foto de estúdio, com o
-fundo na cor da marca — bem acima da qualidade do resto das fotos de trabalho.
-`scripts/recorta-fotos.py` separa os três painéis antes de cortar; o painel
-esquerdo (mais fechado, mostrando as mãos ajeitando o cabelo) ficou de sobra e
-pode entrar em qualquer novo espaço que peça essa mesma foto.
+A seção da progressiva usa o tríptico de estúdio (`progressiva-estudio.jpg`),
+foto de estúdio com o fundo na cor da marca — bem acima da qualidade do resto
+das fotos de trabalho. `scripts/recorta-fotos.py` separa os três painéis antes
+de cortar; dois ficaram de sobra (o painel central, olhando direto para a
+câmera, e o esquerdo, mais fechado, mostrando as mãos ajeitando o cabelo) e
+podem entrar em qualquer novo espaço que peça essa mesma sessão de fotos.
+
+Por escolha, a galeria não repete essa mesma sessão de estúdio: usa a foto
+original da progressiva, feita no salão de verdade. Fica coerente com as
+outras duas fotos da galeria (bob e chanel de bico), que também são do salão —
+e dá variedade ao lado do close de estúdio que abre a seção da oferta.
 
 Os arquivos originais (`fotos/*.jpg`) não ficam neste repositório — só os
 recortes finais, em `assets/img/`. Para reprocessar ou trocar um recorte,

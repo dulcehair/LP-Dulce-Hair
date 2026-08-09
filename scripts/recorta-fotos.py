@@ -22,8 +22,9 @@ CORTES = [
     ('salao-sem-ventilador.jpg', (700, 0, 1600, 1200), 'hero-mobile'),
     # seção da progressiva: foto de estúdio, painel direito (sorrindo, perfil)
     ('progressiva-estudio-dir.jpg', (0, 30, 640, 830),      'progressiva'),
-    # galeria: painel central (olhar direto, sem marca d'água na área usada)
-    ('progressiva-estudio-centro.jpg', (0, 0, 640, 830),    'galeria-progressiva'),
+    # galeria: a foto de progressiva original, no ambiente real do salão —
+    # dá variedade ao lado do close de estúdio que abre a seção da oferta
+    ('progressiva.png', (280, 0, 1094, 1086),               'galeria-progressiva'),
     # seção do corte: quadrado no rosto
     ('_esq.png',        (0, 0, 692, 865),         'corte'),
     # galeria: perfil do bob, 3:4
