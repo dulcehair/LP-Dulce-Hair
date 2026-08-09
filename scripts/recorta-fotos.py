@@ -1,5 +1,13 @@
 #!/usr/bin/env python3
-"""Recorta as fotos reais do salão nos formatos que a página usa."""
+"""
+Recorta as fotos reais do salão nos formatos que a página usa.
+
+Os arquivos originais (fotos de câmera, sem tratamento) NÃO ficam neste
+repositório — são pesados e não precisam de controle de versão. Este script
+espera achá-los numa pasta `fotos/` ao lado dele; coloque ali os originais
+antes de rodar. O resultado (os recortes já prontos) é o que fica versionado,
+em assets/img/.
+"""
 
 import os
 from PIL import Image
@@ -12,10 +20,10 @@ CORTES = [
     # hero: o salão. Paisagem no desktop, retrato no celular.
     ('salao-sem-ventilador.jpg', None,            'hero'),
     ('salao-sem-ventilador.jpg', (700, 0, 1600, 1200), 'hero-mobile'),
-    # seção da progressiva: retrato 4:5 fechado no comprimento
-    ('progressiva.png', (226, 0, 1095, 1086),     'progressiva'),
-    # galeria: retrato 3:4, mesmo formato dos outros dois trabalhos
-    ('progressiva.png', (300, 0, 1114, 1086),     'galeria-progressiva'),
+    # seção da progressiva: foto de estúdio, painel direito (sorrindo, perfil)
+    ('progressiva-estudio-dir.jpg', (0, 30, 640, 830),      'progressiva'),
+    # galeria: painel central (olhar direto, sem marca d'água na área usada)
+    ('progressiva-estudio-centro.jpg', (0, 0, 640, 830),    'galeria-progressiva'),
     # seção do corte: quadrado no rosto
     ('_esq.png',        (0, 0, 692, 865),         'corte'),
     # galeria: perfil do bob, 3:4
@@ -27,7 +35,23 @@ CORTES = [
 ]
 
 
+def separa_triptico():
+    """O arquivo progressiva-estudio.jpg tem três fotos lado a lado, sem
+    espaçamento entre elas. Recorta cada terço para um arquivo próprio antes
+    dos cortes de CORTES poderem usá-los."""
+    caminho = os.path.join(ORIG, 'progressiva-estudio.jpg')
+    if not os.path.exists(caminho):
+        return
+    im = Image.open(caminho).convert('RGB')
+    w, h = im.size
+    terco = w // 3
+    nomes = ('progressiva-estudio-esq.jpg', 'progressiva-estudio-centro.jpg', 'progressiva-estudio-dir.jpg')
+    for i, nome in enumerate(nomes):
+        im.crop((i * terco, 0, (i + 1) * terco, h)).save(os.path.join(ORIG, nome), quality=95)
+
+
 def main():
+    separa_triptico()
     for origem, caixa, nome in CORTES:
         im = Image.open(os.path.join(ORIG, origem)).convert('RGB')
         if caixa:

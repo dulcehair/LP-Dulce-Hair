@@ -192,29 +192,41 @@ assunto certo, mesmo que a visita não tenha vindo pelo link da campanha.
 
 ## Imagens
 
-A página usa **fotos reais do salão**, recortadas a partir de cinco originais:
-o interior do salão, a profissional com uma cliente, o bob (duas fotos num arquivo só, de frente e de perfil),
-o chanel de bico e a progressiva.
+A página usa **fotos reais do salão**, recortadas a partir de seis originais:
+o interior do salão, a profissional com uma cliente, o bob (duas fotos num
+arquivo só, de frente e de perfil), o chanel de bico e o tríptico de estúdio
+da progressiva (três fotos lado a lado num arquivo só).
 
 | Arquivo | Proporção | Onde aparece | Origem |
 |---|---|---|---|
 | `hero.jpg` / `.webp` | 1600×1200 | Fundo do topo, no desktop | salão |
 | `hero-mobile.jpg` | 900×1200 | Fundo do topo, no celular | salão |
-| `progressiva.jpg` | 4:5 | Seção da progressiva | progressiva |
+| `progressiva.jpg` | 4:5 | Seção da progressiva | tríptico, painel direito |
 | `corte.jpg` | 4:5 | Seção do corte | bob, de frente |
 | `equipe.jpg` | 4:5 | Seção "quem vai cuidar do seu cabelo" | profissional com cliente |
 | `galeria-bob.jpg` | 3:5 | Galeria de resultados | bob, de perfil |
 | `galeria-chanel.jpg` | 3:5 | Galeria de resultados | chanel de bico |
-| `galeria-progressiva.jpg` | 1,15:1 | Galeria de resultados | progressiva |
+| `galeria-progressiva.jpg` | ~4:5 | Galeria de resultados | tríptico, painel central |
 | `og-image.jpg` | 1200×630 | Compartilhamento (WhatsApp, Facebook) | derivada do hero |
 
-A foto do salão aparece só no topo. As três dos trabalhos aparecem em dois
-lugares cada, sempre em enquadramentos diferentes e distantes um do outro.
-**Fotos novas resolvem isso** — as que fariam mais diferença, em ordem:
+O tríptico da progressiva (`progressiva-estudio.jpg`) é foto de estúdio, com o
+fundo na cor da marca — bem acima da qualidade do resto das fotos de trabalho.
+`scripts/recorta-fotos.py` separa os três painéis antes de cortar; o painel
+esquerdo (mais fechado, mostrando as mãos ajeitando o cabelo) ficou de sobra e
+pode entrar em qualquer novo espaço que peça essa mesma foto.
 
-1. **Antes e depois de progressiva.** Converte bem mais do que foto só do depois.
-2. **Um cacheado e uma coloração**, para a galeria ter tipos de cabelo diferentes.
-3. **Um trabalho de unha**, agora que nail design entrou nos serviços.
+Os arquivos originais (`fotos/*.jpg`) não ficam neste repositório — só os
+recortes finais, em `assets/img/`. Para reprocessar ou trocar um recorte,
+coloque os originais numa pasta `fotos/` ao lado de `scripts/recorta-fotos.py`
+(o próprio script documenta o que cada nome de arquivo precisa ser) e rode-o.
+
+A foto do salão aparece só no topo. As outras aparecem em dois lugares cada,
+sempre em enquadramentos diferentes e distantes um do outro. **Fotos novas
+resolvem isso** — as que fariam mais diferença, em ordem:
+
+1. **Um cacheado e uma coloração**, para a galeria ter tipos de cabelo diferentes.
+2. **Um trabalho de unha**, agora que nail design entrou nos serviços.
+3. **Antes e depois de progressiva**, se quiser reforçar ainda mais essa oferta.
 
 Cada `<picture>` no HTML busca o `.webp` primeiro e cai para o `.jpg`. Se você só
 tiver JPG, apague a linha `<source ... type="image/webp">` correspondente — ou
